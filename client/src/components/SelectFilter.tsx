@@ -4,27 +4,52 @@ import {
   useFilterSelector,
   useSetFilterSelector,
 } from '../store/useFilterStore';
+import { formatFilterName } from '../utils/formatFilterName';
 
 export const SelectFilter = () => {
-  const filter = useFilterSelector();
+  const currentFilter = useFilterSelector();
   const setFilter = useSetFilterSelector();
 
-  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newFilter = e.target.value as filterType;
-    setFilter(newFilter);
+  const handleFilterChange = (filterParam: filterType) => {
+    setFilter(filterParam);
   };
 
+  const activeIndex = FILTER_OPTIONS.indexOf(currentFilter);
+
   return (
-    <select
-      className="w-1/2 h-1/2"
-      value={filter}
-      onChange={(e) => handleFilterChange(e)}
-    >
-      {FILTER_OPTIONS.map((filterParam, i) => (
-        <option value={filterParam} key={i}>
-          {filterParam}
-        </option>
-      ))}
-    </select>
+    <div className="pb-4 w-full select-none">
+      <div
+        style={{ '--active-index': activeIndex } as React.CSSProperties}
+        className="relative grid grid-cols-3 w-full p-1.5 bg-white border border-gray-200 rounded-xl shadow-xs"
+      >
+        {FILTER_OPTIONS.map((filterParam, index) => {
+          const id = `radio-${index}`;
+          const isChecked = currentFilter === filterParam;
+
+          return (
+            <div key={index} className="relative z-10 w-full text-center">
+              <input
+                type="radio"
+                id={id}
+                name="tabs"
+                checked={isChecked}
+                onChange={() => handleFilterChange(filterParam as filterType)}
+                className="hidden"
+              />
+
+              <label
+                htmlFor={id}
+                className={`flex items-center justify-center h-12 w-full text-lg font-medium rounded-xs cursor-pointer transition-colors duration-150 ease-in
+                  ${isChecked ? 'text-primary' : 'text-gray-500 hover:text-gray-900'}`}
+              >
+                {formatFilterName(filterParam)}
+              </label>
+            </div>
+          );
+        })}
+
+        <span className="absolute top-1.5 bottom-1.5 left-1.5 w-[calc(100%/3-8px)] bg-primary-light rounded-xl z-0 transition-transform duration-250 ease-out translate-x-[calc(var(--active-index)*100%)]" />
+      </div>
+    </div>
   );
 };

@@ -1,10 +1,8 @@
 import axios from 'axios';
-
-const baseURL = '/api/hn/';
+import { APP_CONFIG } from '../constants/base';
 
 export const api = axios.create({
-  baseURL: baseURL,
-  timeout: 10000,
+  baseURL: APP_CONFIG.API_BASE_URL,
 });
 
 api.interceptors.request.use((config) => {
@@ -12,4 +10,5 @@ api.interceptors.request.use((config) => {
     config.url = `${config.url}.json`;
   }
   return config;
-}); //this interceptor is used because HACKER-NEWS requires .json at the end of every request
+});
+//this interceptor is used because HACKER-NEWS requires .json at the end of every request

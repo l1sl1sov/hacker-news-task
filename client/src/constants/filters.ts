@@ -1,5 +1,5 @@
 export const FILTER_OPTIONS = [
-  'newstories',
-  'topstories',
-  'beststories',
+  'newStories',
+  'topStories',
+  'bestStories',
 ] as const;

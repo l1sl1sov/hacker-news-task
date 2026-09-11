@@ -9,19 +9,15 @@ interface FilterStoreI {
   setFilter: (newFilter: filterType) => void;
 }
 
-const useFilterStore = create<FilterStoreI>()(
+export const useFilterStore = create<FilterStoreI>()(
   persist(
     (set) => ({
-      filter:
-        (localStorage.getItem('filter') as filterType) || FILTER_OPTIONS[0],
+      filter: FILTER_OPTIONS[0],
       setFilter: (newFilter) => {
         set(() => ({ filter: newFilter }));
       },
     }),
-    {
-      name: 'filter-store',
-      storage: createJSONStorage(() => localStorage),
-    },
+    { name: 'filter-store', storage: createJSONStorage(() => localStorage) },
   ),
 );
 
