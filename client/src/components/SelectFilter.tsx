@@ -47,8 +47,9 @@ export const SelectFilter = () => {
             </div>
           );
         })}
-
-        <span className="absolute top-1.5 bottom-1.5 left-1.5 w-[calc(100%/3-8px)] bg-primary-light rounded-xl z-0 transition-transform duration-250 ease-out translate-x-[calc(var(--active-index)*100%)]" />
+        <span className="absolute top-0 bottom-0 left-0 w-[calc(100%/3)] p-1.5 z-0 transition-transform duration-250 ease-out translate-x-[calc(var(--active-index)*100%)]">
+          <span className="w-full h-full block bg-primary-light rounded-xl" />
+        </span>
       </div>
     </div>
   );

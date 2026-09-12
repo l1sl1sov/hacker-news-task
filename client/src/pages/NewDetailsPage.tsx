@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getItemService } from '../server/services';
 import { APP_CONFIG } from '../constants/base';
 import { NewDetails } from '../components/NewDetails';
+import { NotFoundPage } from './NotFoundPage';
 
 export const NewDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,9 +23,8 @@ export const NewDetailsPage = () => {
     refetchOnWindowFocus: false,
   });
 
-  if (!id) return <div>ID новости не указан в URL</div>;
-  if (isLoading) return <div>Загрузка новости...</div>;
-  if (error || !activeStory) return <div>Новость не найдена</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (error || !activeStory || !id) return <NotFoundPage />;
 
   return <NewDetails data={activeStory} />;
 };

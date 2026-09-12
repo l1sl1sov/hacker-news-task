@@ -1,8 +1,8 @@
-import { Link } from 'react-router';
 import type { NewItemI } from '../types/newsTypes';
 import { getPublicationData } from '../utils/formatTime';
 import { getScoreBadgeConfig } from '../utils/formatNewItemUI';
 import { Separator } from './UI/Separator';
+import { ComeBackBtn } from './ComeBackBtn';
 
 interface NewDetailsProps {
   data: NewItemI;
@@ -14,15 +14,7 @@ export const NewDetails = ({ data }: NewDetailsProps) => {
 
   return (
     <div className="flex flex-col gap-8 w-full">
-      <Link
-        to="/"
-        className="inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer w-fit group leading-none bg-primary-light text-primary hover:text-white border border-primary-light shadow-primary-glow px-4 py-2 text-xs rounded-xl font-bold"
-      >
-        <span className="text-[1.3em] pr-0 group-hover:pr-1.5 transition-all duration-200 ease-out">
-          ←
-        </span>
-        <span>Back to feed</span>
-      </Link>
+      <ComeBackBtn />
 
       <div className="flex flex-col gap-5 w-full p-5 border border-white">
         <div className="flex flex-wrap items-center gap-2.5 text-xs text-gray-500 font-medium bg-transparent border-0 p-0 w-fit">
