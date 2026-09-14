@@ -39,7 +39,7 @@ export const SelectFilter = () => {
 
               <label
                 htmlFor={id}
-                className={`flex items-center justify-center h-12 w-full text-lg font-medium rounded-xs cursor-pointer transition-colors duration-150 ease-in
+                className={`flex items-center justify-center h-12 w-full text-md font-medium rounded-xs cursor-pointer transition-colors duration-150 ease-in
                   ${isChecked ? 'text-primary' : 'text-gray-500 hover:text-gray-900'}`}
               >
                 {formatFilterName(filterParam)}
