@@ -9,7 +9,7 @@ export const Header = () => {
           <div className="absolute inset-0 bg-primary-glow rounded-full blur-sm opacity-75" />
         </div>
         <span className="text-lg font-bold text-gray-900 tracking-tight">
-          Hacker <span className="text-primary">news</span>
+          Hacker <span className="text-primary">News</span>
         </span>
       </Link>
 

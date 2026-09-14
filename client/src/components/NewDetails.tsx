@@ -3,6 +3,10 @@ import { getPublicationData } from '../utils/formatTime';
 import { getScoreBadgeConfig } from '../utils/formatNewItemUI';
 import { Separator } from './UI/Separator';
 import { ComeBackBtn } from './ComeBackBtn';
+<<<<<<< HEAD
+=======
+import { Link } from 'react-router';
+>>>>>>> feature/user-profile
 
 interface NewDetailsProps {
   data: NewItemI;
@@ -18,7 +22,10 @@ export const NewDetails = ({ data }: NewDetailsProps) => {
 
       <div className="flex flex-col gap-5 w-full p-5 border border-white">
         <div className="flex flex-wrap items-center gap-2.5 text-xs text-gray-500 font-medium bg-transparent border-0 p-0 w-fit">
-          <div className="flex items-center gap-1.5 bg-gray-100 text-gray-600 px-2.5 py-1 rounded-md font-bold cursor-pointer">
+          <Link
+            to={`/user/${data.by}`}
+            className="flex items-center gap-1.5 bg-gray-100 text-gray-600 px-2.5 py-1 rounded-md font-bold cursor-pointer"
+          >
             <svg
               className="w-3.5 h-3.5 text-gray-400"
               fill="none"
@@ -33,7 +40,7 @@ export const NewDetails = ({ data }: NewDetailsProps) => {
               />
             </svg>
             <span>{data.by}</span>
-          </div>
+          </Link>
           <Separator />
           <span>Posted {getPublicationData(data.time)}</span>
         </div>
