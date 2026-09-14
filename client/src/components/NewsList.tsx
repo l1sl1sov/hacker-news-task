@@ -39,7 +39,7 @@ export const NewsList = () => {
   }
 
   return (
-    <div>
+    <div className="mb-4">
       {news && news.length > 0 ? (
         <ul className={isPlaceholderData ? 'opacity-50' : 'opacity-100'}>
           <li className="mb-2">
