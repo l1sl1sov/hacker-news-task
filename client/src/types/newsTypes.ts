@@ -6,7 +6,7 @@ export type FeedFilterType = 'top' | 'new' | 'best';
 
 export interface NewItemI {
   id: number;
-  type: 'story' | 'comment' | 'poll' | 'pollopt';
+  type: 'story' | 'comment' | 'poll' | 'pollopt' | 'job';
   by: string;
   time: number;
   text?: string;
