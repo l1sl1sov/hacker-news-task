@@ -6,3 +6,10 @@
   --color-primary-glow: var(--color-purple-500);
   --shadow-primary-glow: 0 2px 4px var(--color-purple-100);
 }
+
+html,
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}

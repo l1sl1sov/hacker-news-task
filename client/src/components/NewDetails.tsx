@@ -3,10 +3,7 @@ import { getPublicationData } from '../utils/formatTime';
 import { getScoreBadgeConfig } from '../utils/formatNewItemUI';
 import { Separator } from './UI/Separator';
 import { ComeBackBtn } from './ComeBackBtn';
-<<<<<<< HEAD
-=======
 import { Link } from 'react-router';
->>>>>>> feature/user-profile
 
 interface NewDetailsProps {
   data: NewItemI;
