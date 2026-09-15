@@ -4,6 +4,7 @@ import { getScoreBadgeConfig } from '../utils/formatNewItemUI';
 import { Separator } from './UI/Separator';
 import { ComeBackBtn } from './ComeBackBtn';
 import { Link } from 'react-router';
+import { CommentSection } from './CommentSection';
 
 interface NewDetailsProps {
   data: NewItemI;
@@ -99,27 +100,7 @@ export const NewDetails = ({ data }: NewDetailsProps) => {
         </div>
       </div>
 
-      <div className="w-full h-px bg-gray-200 my-2" />
-
-      <section className="flex flex-col gap-5">
-        <div className="flex items-center gap-2">
-          <h2 className="text-xl font-extrabold text-gray-900">Discussion</h2>
-          <span className="text-xs font-bold px-2.5 py-0.5 bg-gray-100 text-gray-600 rounded-full">
-            {data.descendants ?? 0}
-          </span>
-        </div>
-
-        <div className="p-8 bg-gray-50/50 border border-dashed border-gray-200 rounded-2xl text-left">
-          <p className="text-sm font-semibold text-gray-700 mb-1.5">
-            Comments section placeholder
-          </p>
-          <p className="text-xs text-gray-400 tracking-wide">
-            {data.kids && data.kids.length > 0
-              ? `Found ${data.kids.length} root comments to render here later by their IDs.`
-              : 'There are no comments on this story yet.'}
-          </p>
-        </div>
-      </section>
+      <CommentSection data={data} />
     </div>
   );
 };
