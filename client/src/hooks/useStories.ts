@@ -33,16 +33,19 @@ export const useStories = (filter: filterType) => {
   const activeIds = newsIds?.slice(0, visibleCount) || [];
 
   //now i load all items per page by their ids
-  const queries = activeIds.map((id) => ({
-    queryKey: ['newsItem', id],
-    queryFn: () => getItemService(id),
-    enabled: !!newsIds && activeIds.length > 0,
-    placeholderData: keepPreviousData,
-    staleTime: 60000,
-    gcTime: 3 * 60 * 1000,
-    refetchInterval: APP_CONFIG.REFETCH_INTERVAL_MS,
-    refetchOnWindowFocus: false,
-  }));
+  const queries = useMemo(() => {
+    return activeIds.map((id) => ({
+      queryKey: ['newsItem', id],
+      queryFn: ({ signal }: { signal: AbortSignal }) =>
+        getItemService(id, signal),
+      enabled: !!newsIds && activeIds.length > 0,
+      placeholderData: keepPreviousData,
+      staleTime: 60000,
+      gcTime: 3 * 60 * 1000,
+      refetchInterval: APP_CONFIG.REFETCH_INTERVAL_MS,
+      refetchOnWindowFocus: false,
+    }));
+  }, [activeIds, newsIds]);
   const results = useQueries({ queries });
 
   //for hard refetch button

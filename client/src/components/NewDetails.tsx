@@ -3,8 +3,10 @@ import { getPublicationData } from '../utils/formatTime';
 import { getScoreBadgeConfig } from '../utils/formatNewItemUI';
 import { Separator } from './UI/Separator';
 import { ComeBackBtn } from './ComeBackBtn';
-import { Link } from 'react-router';
 import { CommentSection } from './CommentSection';
+import { UserLink } from './UserLink';
+import { SafeHtml } from './UI/SafeHtml';
+import { ScoreBadge } from './UI/ScoreBadge';
 
 interface NewDetailsProps {
   data: NewItemI;
@@ -20,36 +22,17 @@ export const NewDetails = ({ data }: NewDetailsProps) => {
 
       <div className="flex flex-col gap-5 w-full p-5 border border-white">
         <div className="flex flex-wrap items-center gap-2.5 text-xs text-gray-500 font-medium bg-transparent border-0 p-0 w-fit">
-          <Link
-            to={`/user/${data.by}`}
-            className="flex items-center gap-1.5 bg-gray-100 text-gray-600 px-2.5 py-1 rounded-md font-bold cursor-pointer"
-          >
-            <svg
-              className="w-3.5 h-3.5 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-              />
-            </svg>
-            <span>{data.by}</span>
-          </Link>
+          <UserLink username={data.by} />
           <Separator />
           <span>Posted {getPublicationData(data.time)}</span>
         </div>
 
         <div className="flex gap-7 items-start w-full">
           <div className="flex flex-col items-center justify-center min-w-18 p-4 rounded-2xl border border-gray-200 bg-gray-50/50 text-gray-700 shadow-xs cursor-default select-none">
-            <div
-              className={`flex items-center justify-center p-2 rounded-full shadow-2xs text-lg ${badge.classes}`}
-            >
-              {badge.icon}
-            </div>
+            <ScoreBadge
+              type={badge.type}
+              classes={`p-2 rounded-full shadow-2xs text-lg ${badge.classes}`}
+            />
             <span className="text-base font-extrabold leading-none tracking-tight mt-2">
               {score}
             </span>
@@ -64,14 +47,7 @@ export const NewDetails = ({ data }: NewDetailsProps) => {
                 {data.title}
               </h1>
 
-              {data.text && (
-                <div
-                  className="text-sm text-gray-700 leading-relaxed tracking-normal wrap-break-word
-                    [&>p]:mb-2 
-                    [&>a]:text-primary [&>a]:font-bold [&>a]:underline [&>a]:decoration-1 [&>a]:underline-offset-2 hover:[&>a]:text-primary-dark"
-                  dangerouslySetInnerHTML={{ __html: data.text }}
-                />
-              )}
+              {data.text && <SafeHtml html={data.text} />}
             </div>
 
             {data.url && (

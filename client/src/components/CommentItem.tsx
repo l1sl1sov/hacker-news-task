@@ -1,14 +1,20 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
 import type { NewItemI } from '../types/newsTypes';
+import { useSubCommentsTree } from '../hooks/useSubCommentsTree';
+import { SubCommentItem } from './UI/SubCommentItem';
+import { UserLink } from './UserLink';
+import { SafeHtml } from './UI/SafeHtml';
 
 interface CommentItemProps {
   comment: NewItemI;
-  isChild?: boolean;
 }
 
-export const CommentItem = ({ comment, isChild = false }: CommentItemProps) => {
+export const CommentItem = ({ comment }: CommentItemProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { data: repliesTree, isLoading } = useSubCommentsTree(
+    comment.kids,
+    isExpanded,
+  );
 
   const formattedTime = comment.time
     ? new Date(comment.time * 1000).toLocaleDateString()
@@ -17,48 +23,17 @@ export const CommentItem = ({ comment, isChild = false }: CommentItemProps) => {
   const hasReplies = repliesCount > 0;
 
   return (
-    <div className="w-full flex flex-col gap-3">
-      <div className="p-5 bg-white border border-gray-100 rounded-xl shadow-sm">
+    <div className="w-full flex flex-col gap-3 p-5 bg-white border border-gray-100 rounded-xl shadow-sm">
+      <div className="w-full flex flex-col">
         <div className="flex items-center gap-2 mb-2.5 text-xs text-gray-500">
-          {comment.by ? (
-            <Link
-              to={`/user/${comment.by}`}
-              className="flex items-center gap-1.5 bg-gray-100 text-gray-600 px-2.5 py-1 rounded-md font-bold cursor-pointer"
-            >
-              <svg
-                className="w-3.5 h-3.5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                />
-              </svg>
-              <span>{comment.by}</span>
-            </Link>
-          ) : (
-            <span className="font-bold text-gray-400 bg-gray-50 px-2.5 py-1 rounded-md">
-              anonymous
-            </span>
-          )}
+          <UserLink username={comment.by} />
           <span>•</span>
           <span>{formattedTime}</span>
         </div>
 
-        {comment.text && (
-          <div
-            className="text-sm text-gray-700 leading-relaxed wrap-break-word space-y-2 prose prose-sm max-w-none
-              [&_a]:text-primary [&_a]:font-bold [&_a]:underline hover:[&_a]:text-primary-glow
-              [&_pre]:bg-gray-50 [&_pre]:p-2 [&_pre]:rounded [&_pre]:overflow-x-auto [&_code]:font-mono"
-            dangerouslySetInnerHTML={{ __html: comment.text }}
-          />
-        )}
+        {comment.text && <SafeHtml html={comment.text} />}
 
-        {hasReplies && !isChild && (
+        {hasReplies ? (
           <div className="mt-4 pt-3 border-t border-gray-50 flex items-center gap-3">
             <button
               onClick={() => setIsExpanded((prev) => !prev)}
@@ -77,21 +52,37 @@ export const CommentItem = ({ comment, isChild = false }: CommentItemProps) => {
                   d="M19.5 8.25l-7.5 7.5-7.5-7.5"
                 />
               </svg>
-              <span>{isExpanded ? 'Hide replies' : 'Show replies'}</span>
+              <span>
+                {isExpanded ? 'Hide replies' : `Show threads (${repliesCount})`}
+              </span>
             </button>
-
-            <span className="text-xs font-medium text-gray-400">
-              {repliesCount} {repliesCount === 1 ? 'reply' : 'replies'}
+          </div>
+        ) : (
+          <div className="mt-4 pt-3 border-t border-gray-50 flex items-center gap-3">
+            <span className="flex items-center text-xs font-semibold bg-gray-50/50 text-gray-400 px-3 py-1.5 rounded-lg select-none cursor-default">
+              No replies yet.
             </span>
           </div>
         )}
       </div>
 
-      {hasReplies && !isChild && isExpanded && (
-        <div className="pl-8 border-l-2 border-gray-200/80 flex flex-col gap-3 mt-1 ml-4">
-          <div className="w-full h-16 bg-gray-50/50 border border-dashed border-gray-200 rounded-2xl animate-pulse">
-            here will be replies ...
-          </div>
+      {hasReplies && isExpanded && (
+        <div className="pl-4 border-l-2 border-gray-200/80 flex flex-col gap-3 mt-4">
+          {isLoading && (
+            <div className="w-full h-16 bg-gray-50/50 border border-dashed border-gray-200 rounded-2xl animate-pulse flex items-center justify-center">
+              <span className="text-xs font-semibold text-gray-400">
+                Loading replies...
+              </span>
+            </div>
+          )}
+
+          {!isLoading && repliesTree && (
+            <div className="flex flex-col gap-3">
+              {repliesTree.map((reply) => (
+                <SubCommentItem key={reply.id} node={reply} />
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

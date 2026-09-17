@@ -18,3 +18,8 @@ export interface NewItemI {
   deleted?: boolean;
   dead?: boolean;
 }
+
+export interface CommentNodeI extends NewItemI {
+  replies?: CommentNodeI[];
+  replyTo?: string;
+}

@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react';
+export type BadgeType = 'up' | 'down' | 'neutral';
 
 interface BadgeConfig {
   classes: string;
-  icon: ReactNode;
+  type: BadgeType;
 }
 
 export const formatPointsText = (score: number): string => {
@@ -11,63 +11,10 @@ export const formatPointsText = (score: number): string => {
 
 export const getScoreBadgeConfig = (score: number): BadgeConfig => {
   if (score > 0) {
-    return {
-      classes: 'bg-emerald-50 text-emerald-700',
-      icon: (
-        <svg
-          className="w-3 h-3"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={3}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M5 10l7-7m0 0l7 7m-7-7v18"
-          />
-        </svg>
-      ),
-    };
+    return { classes: 'bg-emerald-50 text-emerald-700', type: 'up' };
   }
-
   if (score < 0) {
-    return {
-      classes: 'bg-rose-50 text-rose-700',
-      icon: (
-        <svg
-          className="w-3 h-3"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={3}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          />
-        </svg>
-      ),
-    };
+    return { classes: 'bg-rose-50 text-rose-700', type: 'down' };
   }
-
-  return {
-    classes: 'bg-gray-50 text-gray-500',
-    icon: (
-      <svg
-        className="w-3 h-3"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={3}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M14 5l7 7m0 0l-7 7m7-7H3"
-        />
-      </svg>
-    ),
-  };
+  return { classes: 'bg-gray-50 text-gray-500', type: 'neutral' };
 };

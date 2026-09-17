@@ -6,7 +6,8 @@ import { MainLayout } from './components/UI/MainLayout';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { UserProfilePage } from './pages/UserProfilePage';
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
+export const ii = '';
 
 function App() {
   return (

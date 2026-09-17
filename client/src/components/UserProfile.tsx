@@ -1,6 +1,7 @@
 import type { UserI } from '../types/userTypes';
 import { ComeBackBtn } from './ComeBackBtn';
 import { getUserInitials, formatRegistrationDate } from '../utils/formatUser';
+import { SafeHtml } from './UI/SafeHtml';
 
 interface UserProfileProps {
   data: UserI;
@@ -56,12 +57,7 @@ export const UserProfile = ({ data }: UserProfileProps) => {
                 Biography
               </h3>
               {data.about ? (
-                <div
-                  className="text-sm text-gray-700 leading-relaxed tracking-normal wrap-break-word max-w-none
-                    [&>p]:mb-3 last:[&>p]:mb-0
-                    [&>a]:text-primary [&>a]:font-bold [&>a]:underline [&>a]:decoration-1 [&>a]:underline-offset-2 hover:[&>a]:text-primary-dark"
-                  dangerouslySetInnerHTML={{ __html: data.about }}
-                />
+                <SafeHtml html={data.about} />
               ) : (
                 <p className="text-sm italic text-gray-400">
                   This user prefers to keep a low profile and hasn't added a bio

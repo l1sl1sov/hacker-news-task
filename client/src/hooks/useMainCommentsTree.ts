@@ -9,17 +9,21 @@ import { keepPreviousData } from '@tanstack/react-query';
 export const useMainCommentsTree = (rootCommentIds: number[] | undefined) => {
   const activeIds = rootCommentIds || [];
 
-  //i already have an array with ids coming from the new data so all i do is just load them by ids
-  const queries = activeIds.map((id) => ({
-    queryKey: ['commentItem', id],
-    queryFn: () => getItemService(id),
-    enabled: activeIds.length > 0,
-    placeholderData: keepPreviousData,
-    staleTime: 60000,
-    gcTime: 3 * 60 * 1000,
-    refetchInterval: APP_CONFIG.REFETCH_INTERVAL_MS,
-    refetchOnWindowFocus: false,
-  }));
+  //memo so urls dont recreate
+  const queries = useMemo(() => {
+    return activeIds.map((id) => ({
+      queryKey: ['commentItem', id],
+      //signal for cancel
+      queryFn: ({ signal }: { signal: AbortSignal }) =>
+        getItemService(id, signal),
+      enabled: activeIds.length > 0,
+      placeholderData: keepPreviousData,
+      staleTime: 60000,
+      gcTime: 3 * 60 * 1000,
+      refetchInterval: APP_CONFIG.REFETCH_INTERVAL_MS,
+      refetchOnWindowFocus: false,
+    }));
+  }, [activeIds]);
 
   const results: UseQueryResult<NewItemI, Error>[] = useQueries({ queries });
 

@@ -6,6 +6,7 @@ import {
 } from '../utils/formatNewItemUI';
 import { Separator } from './UI/Separator';
 import { Link } from 'react-router';
+import { ScoreBadge } from './UI/ScoreBadge';
 
 interface NewItemProps {
   data: NewItemI;
@@ -23,12 +24,11 @@ export const NewItem = ({ data }: NewItemProps) => {
         {data.title}
       </h3>
       <div className="flex flex-wrap items-center text-xs text-gray-500 font-medium">
-        <div
-          className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md font-bold shadow-2xs ${badge.classes}`}
-        >
-          {badge.icon}
-          <span>{formatPointsText(score)}</span>
-        </div>
+        <ScoreBadge
+          type={badge.type}
+          classes={badge.classes}
+          scoreText={formatPointsText(score)}
+        />
 
         <Separator />
 
