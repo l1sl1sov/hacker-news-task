@@ -6,13 +6,12 @@ export const getIdsService = async (filter: filterType): Promise<number[]> => {
   return response.data;
 };
 
-export const getItemService = async (id: number) => {
-  const response = await api.get(`item/${id}`);
+export const getItemService = async (id: number, signal?: AbortSignal) => {
+  const response = await api.get(`item/${id}`, { signal });
   return response.data;
 };
 
 export const getUserService = async (username: string) => {
   const response = await api.get(`user/${username}`);
-  console.log(response.data);
   return response.data;
 };
