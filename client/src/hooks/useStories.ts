@@ -50,7 +50,6 @@ export const useStories = (filter: filterType) => {
 
   //for hard refetch button
   const refetchNews = async () => {
-    console.log('working');
     await refetchIds();
     results.forEach((r) => r.refetch());
     console.log('refetching after await');
@@ -62,6 +61,7 @@ export const useStories = (filter: filterType) => {
   const isFetchingNews = isFetchingIds || results.some((r) => r.isFetching);
   const isPlaceholderData = results.every((result) => result.isPlaceholderData);
 
+  //consts for pagination
   const totalAvailable = newsIds?.length || 0;
   const hasMore = visibleCount < totalAvailable;
 

@@ -9,6 +9,7 @@ interface FilterStoreI {
   setFilter: (newFilter: filterType) => void;
 }
 
+//filter determines what url to load (/bestnews, /topnews and etc)
 export const useFilterStore = create<FilterStoreI>()(
   persist(
     (set) => ({
