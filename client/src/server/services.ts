@@ -6,6 +6,7 @@ export const getIdsService = async (filter: filterType): Promise<number[]> => {
   return response.data;
 };
 
+//for stories and comments
 export const getItemService = async (id: number, signal?: AbortSignal) => {
   const response = await api.get(`item/${id}`, { signal });
   return response.data;
