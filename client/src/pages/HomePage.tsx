@@ -1,5 +1,5 @@
-import { SelectFilter } from '../components/SelectFilter';
-import { NewsList } from '../components/NewsList';
+import { SelectFilter } from '@/components/SelectFilter';
+import { NewsList } from '@/components/NewsList';
 
 export const HomePage = () => {
   return (

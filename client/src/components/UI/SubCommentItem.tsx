@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
-import type { CommentNodeI } from '../../types/newsTypes';
-import { UserLink } from '../UserLink';
+import type { CommentNodeI } from '@typesal/newsTypes';
+import { UserLink } from '@components/UserLink';
 
 interface StaticCommentNodeProps {
   node: CommentNodeI;

@@ -1,4 +1,4 @@
-import { getUserService } from '../server/services';
+import { getUserService } from '@/server/services';
 import { useQuery } from '@tanstack/react-query';
 
 export const useUser = (username: string) => {
@@ -6,6 +6,7 @@ export const useUser = (username: string) => {
     data: userData,
     isLoading: isLoadingUser,
     isFetching: isFetchingUser,
+    error,
   } = useQuery({
     queryKey: ['user', username],
     queryFn: () => getUserService(username),
@@ -16,5 +17,6 @@ export const useUser = (username: string) => {
     userData,
     isLoadingUser,
     isFetchingUser,
+    error,
   };
 };

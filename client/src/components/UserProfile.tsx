@@ -1,7 +1,7 @@
-import type { UserI } from '../types/userTypes';
-import { ComeBackBtn } from './ComeBackBtn';
-import { getUserInitials, formatRegistrationDate } from '../utils/formatUser';
-import { SafeHtml } from './UI/SafeHtml';
+import type { UserI } from '@typesal/userTypes';
+import { ComeBackBtn } from '@components/ComeBackBtn';
+import { getUserInitials, formatRegistrationDate } from '@utils/formatUser';
+import { SafeHtml } from '@components/UI/SafeHtml';
 
 interface UserProfileProps {
   data: UserI;

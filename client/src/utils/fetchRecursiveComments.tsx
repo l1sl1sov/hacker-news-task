@@ -1,6 +1,6 @@
-import { getItemService } from '../server/services';
-import type { NewItemI, CommentNodeI } from '../types/newsTypes';
-import { queryClient } from '../App';
+import { getItemService } from '@/server/services';
+import type { NewItemI, CommentNodeI } from '@typesal/newsTypes';
+import { queryClient } from '@/App';
 
 //function for loading all the tree of subcomments recursive - every comment has an array 'kids', i load everything until its empty
 export const fetchRecursiveComments = async (

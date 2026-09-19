@@ -1,7 +1,7 @@
 import { keepPreviousData, useQueries, useQuery } from '@tanstack/react-query';
-import { getIdsService, getItemService } from '../server/services';
-import type { filterType } from '../types/newsTypes';
-import { APP_CONFIG } from '../constants/base';
+import { getIdsService, getItemService } from '@/server/services';
+import type { filterType } from '@typesal/newsTypes';
+import { APP_CONFIG } from '@constants/base';
 import { useState, useEffect, useMemo } from 'react';
 
 export const useStories = (filter: filterType) => {

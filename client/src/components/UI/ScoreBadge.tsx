@@ -1,4 +1,4 @@
-import type { BadgeType } from '../../utils/formatNewItemUI';
+import type { BadgeType } from '@utils/formatNewItemUI';
 
 interface ScoreBadgeProps {
   type: BadgeType;

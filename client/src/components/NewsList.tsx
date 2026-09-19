@@ -1,10 +1,10 @@
-import { useFilterSelector } from '../store/useFilterStore';
-import { useStories } from '../hooks/useStories';
-import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
-import { NewItem } from './NewItem';
-import { APP_CONFIG } from '../constants/base';
-import { NewsSkeleton } from './NewSkeleton';
-import { Button } from './UI/Button';
+import { useFilterSelector } from '@store/useFilterStore';
+import { useStories } from '@hooks/useStories';
+import { useInfiniteScroll } from '@hooks/useInfiniteScroll';
+import { NewItem } from '@components/NewItem';
+import { APP_CONFIG } from '@constants/base';
+import { NewsSkeleton } from '@components/UI/NewSkeleton';
+import { Button } from '@components/UI/Button';
 
 export const NewsList = () => {
   const filter = useFilterSelector();

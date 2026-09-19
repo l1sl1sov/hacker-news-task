@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { createJSONStorage } from 'zustand/middleware';
-import { FILTER_OPTIONS } from '../constants/filters';
-import type { filterType } from '../types/newsTypes';
+import { FILTER_OPTIONS } from '@constants/filters';
+import type { filterType } from '@typesal/newsTypes';
 
 interface FilterStoreI {
   filter: filterType;

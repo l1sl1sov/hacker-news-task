@@ -1,9 +1,9 @@
 import { useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import { getItemService } from '../server/services';
-import { APP_CONFIG } from '../constants/base';
-import { NewDetails } from '../components/NewDetails';
-import { NotFoundPage } from './NotFoundPage';
+import { getItemService } from '@/server/services';
+import { APP_CONFIG } from '@constants/base';
+import { NewDetails } from '@components/NewDetails';
+import { NotFoundPage } from '@pages/NotFoundPage';
 
 export const NewDetailsPage = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,12 +1,9 @@
-import type { NewItemI } from '../types/newsTypes';
-import { getPublicationData } from '../utils/formatTime';
-import {
-  formatPointsText,
-  getScoreBadgeConfig,
-} from '../utils/formatNewItemUI';
-import { Separator } from './UI/Separator';
+import type { NewItemI } from '@typesal/newsTypes';
+import { getPublicationData } from '@utils/formatTime';
+import { formatPointsText, getScoreBadgeConfig } from '@utils/formatNewItemUI';
+import { Separator } from '@components/UI/Separator';
 import { Link } from 'react-router';
-import { ScoreBadge } from './UI/ScoreBadge';
+import { ScoreBadge } from '@components/UI/ScoreBadge';
 
 interface NewItemProps {
   data: NewItemI;

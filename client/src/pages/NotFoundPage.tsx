@@ -1,4 +1,4 @@
-import { ComeBackBtn } from '../components/ComeBackBtn';
+import { ComeBackBtn } from '@components/ComeBackBtn';
 
 export const NotFoundPage = () => {
   return (

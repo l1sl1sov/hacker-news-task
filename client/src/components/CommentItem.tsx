@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import type { NewItemI } from '../types/newsTypes';
-import { useSubCommentsTree } from '../hooks/useSubCommentsTree';
-import { SubCommentItem } from './UI/SubCommentItem';
-import { UserLink } from './UserLink';
-import { SafeHtml } from './UI/SafeHtml';
+import type { NewItemI } from '@typesal/newsTypes';
+import { useSubCommentsTree } from '@hooks/useSubCommentsTree';
+import { SubCommentItem } from '@components/UI/SubCommentItem';
+import { UserLink } from '@components/UserLink';
+import { SafeHtml } from '@components/UI/SafeHtml';
 
 interface CommentItemProps {
   comment: NewItemI;
@@ -52,9 +52,7 @@ export const CommentItem = ({ comment }: CommentItemProps) => {
                   d="M19.5 8.25l-7.5 7.5-7.5-7.5"
                 />
               </svg>
-              <span>
-                {isExpanded ? 'Hide replies' : `Show threads (${repliesCount})`}
-              </span>
+              <span>{isExpanded ? 'Hide replies' : `Show replies`}</span>
             </button>
           </div>
         ) : (

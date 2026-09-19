@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
-import { useUser } from '../hooks/useUser';
-import { NotFoundPage } from './NotFoundPage';
-import { UserProfile } from '../components/UserProfile';
+import { useUser } from '@hooks/useUser';
+import { NotFoundPage } from '@pages/NotFoundPage';
+import { UserProfile } from '@components/UserProfile';
 
 export const UserProfilePage = () => {
   const { username } = useParams<{ username: string }>();

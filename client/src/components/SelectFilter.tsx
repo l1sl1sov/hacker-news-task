@@ -1,10 +1,7 @@
-import { FILTER_OPTIONS } from '../constants/filters';
-import type { filterType } from '../types/newsTypes';
-import {
-  useFilterSelector,
-  useSetFilterSelector,
-} from '../store/useFilterStore';
-import { formatFilterName } from '../utils/formatFilterName';
+import { FILTER_OPTIONS } from '@constants/filters';
+import type { filterType } from '@typesal/newsTypes';
+import { useFilterSelector, useSetFilterSelector } from '@store/useFilterStore';
+import { formatFilterName } from '@utils/formatFilterName';
 
 export const SelectFilter = () => {
   const currentFilter = useFilterSelector();

@@ -1,12 +1,12 @@
-import type { NewItemI } from '../types/newsTypes';
-import { getPublicationData } from '../utils/formatTime';
-import { getScoreBadgeConfig } from '../utils/formatNewItemUI';
-import { Separator } from './UI/Separator';
-import { ComeBackBtn } from './ComeBackBtn';
-import { CommentSection } from './CommentSection';
-import { UserLink } from './UserLink';
-import { SafeHtml } from './UI/SafeHtml';
-import { ScoreBadge } from './UI/ScoreBadge';
+import type { NewItemI } from '@typesal/newsTypes';
+import { getPublicationData } from '@utils/formatTime';
+import { getScoreBadgeConfig } from '@utils/formatNewItemUI';
+import { Separator } from '@components/UI/Separator';
+import { ComeBackBtn } from '@components/ComeBackBtn';
+import { CommentSection } from '@components/CommentSection';
+import { UserLink } from '@components/UserLink';
+import { SafeHtml } from '@components/UI/SafeHtml';
+import { ScoreBadge } from '@components/UI/ScoreBadge';
 
 interface NewDetailsProps {
   data: NewItemI;

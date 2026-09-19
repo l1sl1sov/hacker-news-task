@@ -1,7 +1,7 @@
-import type { NewItemI } from '../types/newsTypes';
-import { useMainCommentsTree } from '../hooks/useMainCommentsTree';
-import { CommentItem } from './CommentItem';
-import { Button } from './UI/Button';
+import type { NewItemI } from '@typesal/newsTypes';
+import { useMainCommentsTree } from '@hooks/useMainCommentsTree';
+import { CommentItem } from '@components/CommentItem';
+import { Button } from '@components/UI/Button';
 
 interface CommentSectionProps {
   data: NewItemI;

@@ -1,4 +1,4 @@
-import { Button } from './Button';
+import { Button } from '@components/UI/Button';
 import { Link } from 'react-router';
 
 export const Header = () => {

@@ -1,9 +1,9 @@
 import { useQueries } from '@tanstack/react-query';
-import { getItemService } from '../server/services';
-import { APP_CONFIG } from '../constants/base';
+import { getItemService } from '@/server/services';
+import { APP_CONFIG } from '@constants/base';
 import { useMemo } from 'react';
 import type { UseQueryResult } from '@tanstack/react-query';
-import type { NewItemI } from '../types/newsTypes';
+import type { NewItemI } from '@typesal/newsTypes';
 import { keepPreviousData } from '@tanstack/react-query';
 
 export const useMainCommentsTree = (rootCommentIds: number[] | undefined) => {
@@ -27,6 +27,7 @@ export const useMainCommentsTree = (rootCommentIds: number[] | undefined) => {
 
   const results: UseQueryResult<NewItemI, Error>[] = useQueries({ queries });
 
+  //some optimization
   const comments = useMemo(() => {
     return results
       .map((result) => result.data)

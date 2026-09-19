@@ -1,9 +1,9 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { keepPreviousData } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { APP_CONFIG } from '../constants/base';
-import { fetchRecursiveComments } from '../utils/fetchRecursiveComments';
-import type { CommentNodeI } from '../types/newsTypes';
+import { APP_CONFIG } from '@constants/base';
+import { fetchRecursiveComments } from '@utils/fetchRecursiveComments';
+import type { CommentNodeI } from '@typesal/newsTypes';
 
 export const useSubCommentsTree = (
   rootKids: number[] | undefined,
