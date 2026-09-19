@@ -1,6 +1,7 @@
 export const getUserInitials = (id: string): string => {
   if (!id) return '';
-  return id.substring(0, 2).toUpperCase();
+  const spaced = id.replace(/[^A-Z]/gi, '');
+  return spaced.substring(0, 2).toUpperCase();
 };
 
 export const formatRegistrationDate = (unixTimestamp: number): string => {
