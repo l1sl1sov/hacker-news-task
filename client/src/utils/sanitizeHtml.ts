@@ -1,10 +1,38 @@
-import sanitizeHtml from 'sanitize-html';
+import DOMPurify from 'dompurify';
 
-export const getSanitizedHtml = (dirtyHtml: string): string => {
+export const sanitizeHtml = (dirtyHtml: string): string => {
   if (!dirtyHtml) return '';
 
-  return sanitizeHtml(dirtyHtml, {
-    allowedTags: [
+  DOMPurify.addHook('uponSanitizeElement', (node, data) => {
+    if (!(node instanceof Element)) return;
+
+    // pre -> div
+    if (data.tagName === 'pre') {
+      const div = document.createElement('div');
+
+      while (node.firstChild) {
+        div.appendChild(node.firstChild);
+      }
+
+      if (node.attributes) {
+        for (let i = 0; i < node.attributes.length; i++) {
+          const attr = node.attributes[i];
+          div.setAttribute(attr.name, attr.value);
+        }
+      }
+
+      node.parentNode?.replaceChild(div, node);
+    }
+
+    // a target blank for safety
+    if (data.tagName === 'a') {
+      node.setAttribute('target', '_blank');
+      node.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+
+  const sanitized = DOMPurify.sanitize(dirtyHtml, {
+    ALLOWED_TAGS: [
       'a',
       'p',
       'div',
@@ -25,27 +53,10 @@ export const getSanitizedHtml = (dirtyHtml: string): string => {
       'h5',
       'h6',
     ],
-
-    allowedAttributes: {
-      a: ['href', 'name', 'target', 'rel'],
-      div: ['class'],
-      span: ['class'],
-      code: ['class'],
-    },
-
-    transformTags: {
-      pre: 'div',
-
-      a: (tagName, attribs) => {
-        return {
-          tagName,
-          attribs: {
-            ...attribs,
-            target: '_blank',
-            rel: 'noopener noreferrer',
-          },
-        };
-      },
-    },
+    ALLOWED_ATTR: ['href', 'title', 'class'],
   });
+
+  DOMPurify.removeHooks('uponSanitizeElement');
+
+  return sanitized as string;
 };

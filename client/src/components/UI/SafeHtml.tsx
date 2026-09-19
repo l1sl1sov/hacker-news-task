@@ -1,4 +1,4 @@
-import { getSanitizedHtml } from '../../utils/sanitizeHtml';
+import { sanitizeHtml } from '../../utils/sanitizeHtml';
 
 interface SafeHtmlProps {
   html: string;
@@ -6,7 +6,7 @@ interface SafeHtmlProps {
 }
 
 export const SafeHtml = ({ html, className = '' }: SafeHtmlProps) => {
-  const sanitizedHtml = getSanitizedHtml(html);
+  const sanitizedHtml = sanitizeHtml(html);
 
   return (
     <div
