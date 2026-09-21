@@ -5,6 +5,23 @@
   --color-primary-light: var(--color-purple-50);
   --color-primary-glow: var(--color-purple-500);
   --shadow-primary-glow: 0 2px 4px var(--color-purple-100);
+  --color-blue: #1fb6ff;
+  --color-purple: #7e5bef;
+  --color-pink: #ff49db;
+  --color-orange: #ff7849;
+  --color-green: #13ce66;
+  --color-yellow: #ffc82c;
+  --color-gray-dark: #273444;
+  --color-gray: #8492a6;
+  --color-gray-light: #d3dce6;
+
+  --font-sans: 'Graphik', sans-serif;
+  --font-serif: 'Merriweather', serif;
+
+  --spacing-8xl: 96rem;
+  --spacing-9xl: 128rem;
+
+  --radius-4xl: 2rem;
 }
 
 html,
