@@ -23,7 +23,7 @@ export const useInfiniteScroll = ({
           onIntersect();
         }
       },
-      { root: null, rootMargin: '0px', threshold: 0.1 },
+      { root: null, rootMargin: '50px', threshold: 0.1 },
     );
 
     const currentTrigger = triggerRef.current;
