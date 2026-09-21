@@ -17,10 +17,11 @@ export const NewDetails = ({ data }: NewDetailsProps) => {
   const badge = getScoreBadgeConfig(score);
 
   return (
-    <div className="flex flex-col gap-8 w-full">
+    <div className="flex flex-col gap-8 w-full text-left">
       <ComeBackBtn />
 
-      <div className="flex flex-col gap-5 w-full p-5 border border-white">
+      {/* Поменяли border-white на нормальный border-gray-200 и добавили bg-white */}
+      <div className="flex flex-col gap-5 w-full p-5 border border-gray-200 rounded-2xl bg-white shadow-sm">
         <div className="flex flex-wrap items-center gap-2.5 text-xs text-gray-500 font-medium bg-transparent border-0 p-0 w-fit">
           <UserLink username={data.by} />
           <Separator />

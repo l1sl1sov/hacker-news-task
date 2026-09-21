@@ -10,7 +10,7 @@ export const NewsSkeleton = ({ count }: NewsSkeletonProps) => {
         .map((_, i) => (
           <li
             key={`skeleton-${i}`}
-            className="mb-5 p-2.5 border border-white bg-gray-100 animate-pulse h-19 list-none"
+            className="mb-5 p-2.5 border border-gray-200/60 bg-gray-100/80 rounded-xl animate-pulse h-19 list-none"
           />
         ))}
     </>

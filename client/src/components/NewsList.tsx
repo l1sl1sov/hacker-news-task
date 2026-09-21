@@ -30,7 +30,7 @@ export const NewsList = () => {
       <div>
         <ul>
           <li className="mb-2">
-            <div className="w-29.5 h-11.5 bg-gray-200 animate-pulse border border-white rounded-lg" />
+            <div className="w-29.5 h-11.5 bg-gray-200 animate-pulse border border-gray-200 rounded-lg" />
           </li>
           <NewsSkeleton count={APP_CONFIG.ITEMS_PER_PAGE} />
         </ul>
@@ -48,7 +48,10 @@ export const NewsList = () => {
             </Button>
           </li>
           {news.map((item) => (
-            <li key={item.id} className="mb-5 p-2.5 border border-white">
+            <li
+              key={item.id}
+              className="mb-5 p-2.5 border border-gray-100 rounded-xl bg-white shadow-xs"
+            >
               <NewItem data={item} />
             </li>
           ))}
